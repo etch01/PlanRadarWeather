@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Colors } from './colors';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
-    listenOrientationChange as lor,
-    removeOrientationListener as rol,
   } from 'react-native-responsive-screen';
-import { Icons } from '../assets/icons';
-import { Images } from '../assets/images';
+import { Icons } from '../../assets/icons';
+import { Images } from '../../assets/images';
+import { TextComponent } from '../index';
 
 interface HeaderProps {
     // children: React.JSX.Element;
     withBackIcon?: boolean;
+    title: string;
 }
 
-const HeaderView = ({withBackIcon}: HeaderProps) => {
+const HeaderView = ({withBackIcon, title}: HeaderProps) => {
 
   return (
     <View style={styles.container}>
@@ -24,7 +24,10 @@ const HeaderView = ({withBackIcon}: HeaderProps) => {
                 {withBackIcon ? <Image source={Icons.backArrow.src}/>:<></>}
             </View>
             <View style={styles.titleView}>
-                <Text>London historical</Text>
+                <TextComponent 
+                    style={styles.title}
+                    numberOfLines={1}
+                >{title}</TextComponent>
             </View>
         </View>
         <View style={styles.body}>
@@ -54,8 +57,12 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     titleView:{
-        paddingHorizontal: wp(37),
-        paddingBottom: hp(3)
+        paddingHorizontal: wp(20),
+        paddingBottom: hp(3),
+    },
+    title:{
+        color: Colors.light,
+        fontSize: 24
     },
     body:{
         flex: 4,
