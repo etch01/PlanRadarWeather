@@ -6,24 +6,23 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
 } from 'react-native';
-
+import AppNavigator from './src/navigation/appNavigator';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 function App(): React.JSX.Element {
 
   return (
-    <SafeAreaView>
+    <GestureHandlerRootView>
+      <SafeAreaView style={{flex:1}}>
+        <AppNavigator>
 
-    </SafeAreaView>
+        </AppNavigator>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;
