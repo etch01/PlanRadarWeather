@@ -21,6 +21,7 @@ const Navigation: React.FC = () => {
       ref={navigatorRef}   
     >
       <Stack.Navigator initialRouteName="Home" screenOptions={navOptionHandler}>
+        {/* Instead of screens we should add diffrent navigators ex: auth navigator , home navigator , searh navigator but app size is too small */}
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="WeatherDetails" component={WeatherDetails} />
       </Stack.Navigator>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Modal, StyleSheet } from 'react-native';
-import CityModel from '../../../services/realmDB/cityService';
 import { Colors } from '../../../components/shared/colors';
+import { useDispatch } from 'react-redux';
+import { fetchCities } from '../../../redux/actions/citiesAction';
+import CityModel from '../../../services/realmDB/cityService';
 
 interface Iprops{
     isModalVisible: boolean;
@@ -11,10 +13,12 @@ interface Iprops{
 const AddCityModal = ({isModalVisible,closeModal}:Iprops) => {
   const [cityName, setCityName] = useState('');
   const [countryName, setCountryName] = useState('');
+  const dispatch = useDispatch();
 
   const handleAddCity = () => {
     if (cityName && countryName) {
       CityModel.addCity({ id: Math.floor(Math.random() * 1000), name: cityName, country: countryName });
+      dispatch(fetchCities());
       setCityName('');
       setCountryName('');
       closeModal(); // Close the modal

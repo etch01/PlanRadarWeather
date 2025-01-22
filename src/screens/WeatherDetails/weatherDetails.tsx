@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-// import { HomeProps } from './types';
+import React, { useState, useEffect } from 'react';
+import { View, Image } from 'react-native';
 import { styles } from './styles';
-import { HigherOrderHeader, AddButton, SearchButton } from '../../components';
+import { HigherOrderHeader, TextComponent } from '../../components';
+import { WeatherDetailsProps } from './types';
+import { Images } from '../../assets/images';
 
-
- const WeatherDetails =()=> {
-    const [isAddCityModalVisible, setIsAddCityModalVisible] = useState<boolean>(false);
-    const [isSearchCityModalVisible, setIsSearcgCityModalVisible] = useState<boolean>(false);
-
-    const toggleAddCityModal=(visibility: boolean):void=>{
-        setIsAddCityModalVisible(visibility)
-    }
-
-    const toggleSearchCityModal=(visibility: boolean):void=>{
-        setIsSearcgCityModalVisible(visibility)
-    }
-
+ const WeatherDetails =({route, navigation}:WeatherDetailsProps)=> {
+    const { city } = route.params;
     return (
       <View style={styles.container}>
          <HigherOrderHeader title={''} withBackIcon>
-            <View>
-
+            <View style={styles.detailsCard}>
+                {/* City */}
+                <TextComponent style={styles.name}>{city.name}, {city.country}</TextComponent>
+                {/* Weather Image */}
+                <View style={styles.iconContainer}>
+                    <Image source={Images.weather['cloud-rain'].src} style={styles.weatherImage}/>
+                </View>
+                {/* Details */}
+                <View>
+                    <View style={styles.weatherRow}>
+                        <TextComponent style={styles.weatherText}>Description</TextComponent>
+                        <TextComponent style={styles.statusText}>Cloudy</TextComponent>
+                    </View>
+                    <View style={styles.weatherRow}>
+                        <TextComponent style={styles.weatherText}>Temperature</TextComponent>
+                        <TextComponent style={styles.statusText}>20° C</TextComponent>
+                    </View>
+                    <View style={styles.weatherRow}>
+                        <TextComponent style={styles.weatherText}>Humidity</TextComponent>
+                        <TextComponent style={styles.statusText}>45%</TextComponent>
+                    </View>
+                    <View style={styles.weatherRow}>
+                        <TextComponent style={styles.weatherText}>Windspeed</TextComponent>
+                        <TextComponent style={styles.statusText}>20 km/h</TextComponent>
+                    </View>
+                </View>
             </View>
          </HigherOrderHeader>
       </View>

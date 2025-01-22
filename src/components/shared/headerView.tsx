@@ -19,9 +19,7 @@ const HeaderView = ({children, withBackIcon, title}: HeaderProps) => {
   return (
     <View style={styles.container}>
         <View style={styles.header}>
-            <View>
-                {withBackIcon ? <Image source={Icons.backArrow.src}/>:<></>}
-            </View>
+                {withBackIcon ? <Image source={Icons.backArrow.src} style={styles.backIcon}/>:<></>}
             <View style={styles.titleView}>
                 <TextComponent 
                     style={styles.title}
@@ -73,5 +71,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
         left: 0
+    },
+    backIcon:{
+        width: 60,
+        height: 60,
     }
 })

@@ -9,7 +9,7 @@ export const RESET_CITIES = 'RESET_CITIES';
 // Action to fetch cities from Realm DB
 export const fetchCities = () => async (dispatch: any) => {
   const cities = RealmCityService.getAllCities();
-  dispatch({ type: SET_CITIES, payload: Array.from(cities) });
+  dispatch({ type: SET_CITIES, payload: [...cities] });
 };
 
 // Action to search/filter cities

@@ -1,19 +1,30 @@
 import * as React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Pressable } from 'react-native';
 import { TextComponent } from '../../../components';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
-  import { Icons } from '../../../assets/icons';
+import { Icons } from '../../../assets/icons';
+import { useNavigation } from '@react-navigation/native';
+import { CityType } from '../types';
 
   interface Iprops{
     name: string;
+    city: CityType
   }
 
- const City =({name}:Iprops)=> {
+ const City =({name,city}:Iprops)=> {
+    const navigation:any = useNavigation();
+
+    const onPressCity = () =>{
+        navigation.navigate('WeatherDetails',{
+            city
+        })
+    }
+
     return (
-      <View style={styles.container}>
+      <Pressable style={styles.container} onPress={()=>onPressCity()}>
         <View style={styles.name}>
             <Image style={styles.iconImage} source={Icons.location.src}/>
             <TextComponent style={styles.cityName}>{name}</TextComponent>
@@ -21,7 +32,7 @@ import {
         <View style={styles.icon}>
             <Image style={styles.iconImage} source={Icons.info.src}/>
         </View>
-      </View>
+      </Pressable>
     );
 }
 
