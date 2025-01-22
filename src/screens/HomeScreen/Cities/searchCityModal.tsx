@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Image, Modal, StyleSheet, KeyboardAvoidingView, Platform  } from 'react-native';
+import { View, TextInput, Image, Modal, StyleSheet, KeyboardAvoidingView, Platform, Pressable  } from 'react-native';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -55,8 +55,14 @@ const SearchModal = ({isModalVisible,closeModal}:Iprops) => {
           <View style={styles.modalContent}>
             {/* Title Area */}
             <View style={styles.titleRow}>
+              <View style={styles.titleRight}>
                 <Image source={Icons.search.src} style={styles.searchIcon}/>
                 <TextComponent style={styles.modalTitle}>Search Cities</TextComponent>
+              </View>
+              <Pressable onPress={() => closeModal()}>
+                <Image source={Icons.close.src} style={styles.closeIcon}/>
+              </Pressable>
+
             </View>
             {/* Search Area */}
             <TextInput
@@ -116,11 +122,20 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderBottomColor: Colors.grayBorder,
     borderBottomWidth: 1,
-    paddingBottom: 15
+    paddingBottom: 15,
+    justifyContent:'space-between'
+  },
+  titleRight:{
+    flexDirection: 'row',
+    alignItems:'center',
   },
   searchIcon:{
     width: 24,
     height: 24
+  },
+  closeIcon:{
+    width: 16,
+    height: 16
   }
 });
 

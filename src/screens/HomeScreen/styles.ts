@@ -10,5 +10,11 @@ export const styles = StyleSheet.create({
         bottom: 16,
         right: 16,
         zIndex:2
+    },
+    searchButton:{
+        position: 'absolute',
+        bottom: 16,
+        left: 16,
+        zIndex:2
     }
 });

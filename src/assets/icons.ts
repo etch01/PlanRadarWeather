@@ -11,4 +11,7 @@ export const Icons = {
     location: {
       src: require("./icons/location_city.png")
     },
+    close: {
+      src: require("./icons/close.png")
+    },
 }

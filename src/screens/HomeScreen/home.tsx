@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 // import { HomeProps } from './types';
 import { styles } from './styles';
-import { HigherOrderHeader, AddButton } from '../../components';
+import { HigherOrderHeader, AddButton, SearchButton } from '../../components';
 import CityList from './Cities/cityList';
 import AddCityModal from './Cities/addCityModal';
 import SearchCityModal from './Cities/searchCityModal';
@@ -25,7 +25,9 @@ import SearchCityModal from './Cities/searchCityModal';
             <CityList/>
             <View style={styles.addButton}>
                 <AddButton title='Add City' onPress={()=>toggleAddCityModal(true)}/>
-                <AddButton title='Search City' onPress={()=>toggleSearchCityModal(true)}/>
+            </View>
+            <View style={styles.searchButton}>
+                <SearchButton title='Search City' onPress={()=>toggleSearchCityModal(true)}/>
             </View>
          {isAddCityModalVisible && <AddCityModal isModalVisible={isAddCityModalVisible} closeModal={()=>toggleAddCityModal(false)}/>}
          {isSearchCityModalVisible && 
