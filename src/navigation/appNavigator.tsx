@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { Home } from '../screens';
+import { Home, WeatherDetails } from '../screens';
 
 type RootStackParamList = {
   Home: React.Component; 
+  WeatherDetails: React.Component; 
 };
 
 const navOptionHandler: StackNavigationOptions = {
@@ -21,6 +22,7 @@ const Navigation: React.FC = () => {
     >
       <Stack.Navigator initialRouteName="Home" screenOptions={navOptionHandler}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="WeatherDetails" component={WeatherDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
