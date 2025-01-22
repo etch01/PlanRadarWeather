@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
 import { Home } from '../screens';
 
 type RootStackParamList = {
-  Home: any; 
+  Home: React.Component; 
 };
 
 const navOptionHandler: StackNavigationOptions = {
@@ -18,17 +17,9 @@ const Navigation: React.FC = () => {
 
   return (
     <NavigationContainer
-      ref={navigatorRef}
-      screenOptions={{
-        headerShown: false,
-        cardStyle: {
-          backgroundColor: 'transparent',
-          opacity: 1,
-        },
-      }}
-      initialRouteName="Home"
+      ref={navigatorRef}   
     >
-      <Stack.Navigator screenOptions={navOptionHandler}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={navOptionHandler}>
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -36,7 +27,3 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
-
-const styles = StyleSheet.create({
-
-});

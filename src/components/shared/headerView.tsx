@@ -10,13 +10,12 @@ import { Images } from '../../assets/images';
 import { TextComponent } from '../index';
 
 interface HeaderProps {
-    // children: React.JSX.Element;
+    children: React.ReactNode;
     withBackIcon?: boolean;
     title: string;
 }
 
-const HeaderView = ({withBackIcon, title}: HeaderProps) => {
-
+const HeaderView = ({children, withBackIcon, title}: HeaderProps) => {
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -31,6 +30,7 @@ const HeaderView = ({withBackIcon, title}: HeaderProps) => {
             </View>
         </View>
         <View style={styles.body}>
+            {children}
             <View style={styles.gradientImage}>
                 <Image source={Images.background.src}/>
             </View>
@@ -66,10 +66,12 @@ const styles = StyleSheet.create({
     },
     body:{
         flex: 4,
-        backgroundColor: Colors.bg
+        backgroundColor: Colors.bg,
     },
     gradientImage:{
         position:'absolute',
-        bottom: 0
+        bottom: 0,
+        right: 0,
+        left: 0
     }
 })
