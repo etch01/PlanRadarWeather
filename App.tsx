@@ -10,18 +10,20 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { RealmProvider } from '@realm/react';
-import AppNavigator from './src/navigation/appNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+import AppNavigator from './src/navigation/appNavigator';
 
 function App(): React.JSX.Element {
 
   return (
     <GestureHandlerRootView>
       <SafeAreaView style={{flex:1}}>
-      <RealmProvider>
-        <AppNavigator>
-
-        </AppNavigator>
+        <RealmProvider>
+          <Provider store={store}>
+            <AppNavigator/>
+          </Provider>
         </RealmProvider>
       </SafeAreaView>
     </GestureHandlerRootView>

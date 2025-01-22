@@ -3,17 +3,23 @@ import { FlatList, View } from 'react-native';
 import { CityType } from '../types';
 import City from './cityComponent';
 import RealmCityService from '../../../services/realmDB/cityService';
+import { fetchCities } from '../../../redux/actions/citiesAction'
+import { useDispatch, useSelector } from 'react-redux';
 
  const CityList =()=> {
     const [cities, setCities] = React.useState<CityType[]>([]);
-
-
-      React.useEffect(() => {
-        RealmCityService.addDefaultCity();
+    const dispatch = useDispatch();
+    const citiesList = useSelector((state: any) => state.cities.displayedCities);
+      
+    // fetch all cities from realm
+    React.useEffect(() => {
+        RealmCityService.addDefaultCity(); //Add default city
         const cities:any = RealmCityService.getAllCities();
         setCities(cities)
+        dispatch(fetchCities());
     }, []);
 
+    // Single city card
     const renderItemFlatlist = React.useCallback(({item}: {item:CityType}):React.JSX.Element =>{
         return  <View key={item.id}>
                     <City name={`${item?.name}, ${item?.country}`}/>
@@ -24,7 +30,7 @@ import RealmCityService from '../../../services/realmDB/cityService';
 
     return (
         <FlatList
-          data={cities}
+          data={citiesList}
           renderItem={renderItemFlatlist}
           keyExtractor={_keyExtractor}
           showsHorizontalScrollIndicator={false}

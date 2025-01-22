@@ -5,12 +5,18 @@ import { styles } from './styles';
 import { HigherOrderHeader, AddButton } from '../../components';
 import CityList from './Cities/cityList';
 import AddCityModal from './Cities/addCityModal';
+import SearchCityModal from './Cities/searchCityModal';
 
  const Home =()=> {
-    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+    const [isAddCityModalVisible, setIsAddCityModalVisible] = useState<boolean>(false);
+    const [isSearchCityModalVisible, setIsSearcgCityModalVisible] = useState<boolean>(false);
 
-    const toggleCityModal=(visibility: boolean):void=>{
-        setIsModalVisible(visibility)
+    const toggleAddCityModal=(visibility: boolean):void=>{
+        setIsAddCityModalVisible(visibility)
+    }
+
+    const toggleSearchCityModal=(visibility: boolean):void=>{
+        setIsSearcgCityModalVisible(visibility)
     }
 
     return (
@@ -18,10 +24,17 @@ import AddCityModal from './Cities/addCityModal';
          <HigherOrderHeader title={'Cities'}>
             <CityList/>
             <View style={styles.addButton}>
-                <AddButton title='Add City' onPress={()=>toggleCityModal(true)}/>
+                <AddButton title='Add City' onPress={()=>toggleAddCityModal(true)}/>
+                <AddButton title='Search City' onPress={()=>toggleSearchCityModal(true)}/>
             </View>
+         {isAddCityModalVisible && <AddCityModal isModalVisible={isAddCityModalVisible} closeModal={()=>toggleAddCityModal(false)}/>}
+         {isSearchCityModalVisible && 
+            <SearchCityModal 
+                isModalVisible={isSearchCityModalVisible} 
+                closeModal={()=>toggleSearchCityModal(false)}
+            />
+         }
          </HigherOrderHeader>
-         {isModalVisible && <AddCityModal isModalVisible={isModalVisible} closeModal={()=>toggleCityModal(false)}/>}
       </View>
     );
 }
