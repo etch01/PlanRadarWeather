@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
         textAlign: 'center'
     },
     weatherImage:{
-        width: 64,
-        height: 64
+        width: 80,
+        height: 80
     },
     iconContainer:{
         alignSelf:'center',
@@ -52,5 +52,10 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         color: Colors.mainColor,
         fontWeight: 500
+    },
+    loader:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });

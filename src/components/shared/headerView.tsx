@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Pressable } from 'react-native';
 import { Colors } from './colors';
 import {
     widthPercentageToDP as wp,
@@ -12,14 +12,15 @@ import { TextComponent } from '../index';
 interface HeaderProps {
     children: React.ReactNode;
     withBackIcon?: boolean;
+    onPressBackIcon?: ()=>void;
     title: string;
 }
 
-const HeaderView = ({children, withBackIcon, title}: HeaderProps) => {
+const HeaderView = ({children, withBackIcon, title, onPressBackIcon}: HeaderProps) => {
   return (
     <View style={styles.container}>
         <View style={styles.header}>
-                {withBackIcon ? <Image source={Icons.backArrow.src} style={styles.backIcon}/>:<></>}
+                {withBackIcon ? <Pressable onPress={onPressBackIcon}><Image source={Icons.backArrow.src} style={styles.backIcon}/></Pressable>:<></>}
             <View style={styles.titleView}>
                 <TextComponent 
                     style={styles.title}

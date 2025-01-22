@@ -1,20 +1,26 @@
-import { SET_CITIES,} from '../actions/citiesAction';
+import { FETCH_WEATHER_REQUEST, FETCH_WEATHER_SUCCESS, FETCH_WEATHER_FAILURE } from '../actions/weatherAction';
+import { WeatherData } from '../Interfaces/weatherInterface';
 
-interface CityState {
-  a: any;
+interface WeatherState {
+  loading: boolean;
+  data?: WeatherData | null;
+  error: any;
 }
 
-const initialState: CityState = {
-  a: [],
+const initialState: WeatherState = {
+  loading: false,
+  data: null,
+  error: null,
 };
 
-export const citiesReducer = (state = initialState, action: any): CityState => {
+export const weatherReducer = (state = initialState, action: any): WeatherState => {
   switch (action.type) {
-    case SET_CITIES:
-      return {
-        ...state,
-        a: action.payload,
-      };
+    case FETCH_WEATHER_REQUEST:
+      return { ...state, loading: true, error: null };
+    case FETCH_WEATHER_SUCCESS:
+      return { ...state, loading: false, data: action.payload };
+    case FETCH_WEATHER_FAILURE:
+      return { ...state, loading: false, error: action.payload };
     default:
       return state;
   }

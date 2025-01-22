@@ -1,5 +1,5 @@
-//Get which icon should be placed by condition
-export const getIcon = (weatherData:any):string =>{
+//Get which icon should be placed by condition if you want to use the custom images instead of the dynamic ones
+export const getWeatherIcon = (weatherData:any):string =>{
     const weatherId = weatherData.weather[0].id
     //https://openweathermap.org/weather-conditions
       if (weatherId >= 200 && weatherId <= 232)
