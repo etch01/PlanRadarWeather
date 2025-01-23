@@ -14,7 +14,6 @@ import { Colors } from '../../components/shared/colors';
     const weatherData = isHistory ? weather : data;
 
     useEffect(()=>{
-        console.log(weather)
         if (isHistory){
 
         }else{
@@ -31,12 +30,11 @@ import { Colors } from '../../components/shared/colors';
         return <View style={styles.loader}><ActivityIndicator color={Colors.mainColor} size={25}/></View>
     }
 
-
     else{
     return (
       <View style={styles.container}>
          <HigherOrderHeader title={''} withBackIcon onPressBackIcon={onPressBack}>
-            <View style={styles.body}>
+            {!error?<View style={styles.body}>
             <View style={styles.detailsCard}>
                 {/* City */}
                 <TextComponent style={styles.name}>{city.name}, {city.country}</TextComponent>
@@ -69,7 +67,9 @@ import { Colors } from '../../components/shared/colors';
                 <TextComponent style={styles.footerText}>{`Weather information for ${city.name} received on`}</TextComponent>
                 <TextComponent style={styles.footerText}>{createdAt} </TextComponent>
             </View>}
-            </View>
+            </View>:
+            // If city doesnt exist or fetch failed
+            <TextComponent style={[styles.name,{marginTop: 40}]}>City doesn't exist or error occurred</TextComponent>}
          </HigherOrderHeader>
       </View>
     );
