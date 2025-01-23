@@ -17,7 +17,4 @@ class CitySchema extends Realm.Object {
   };
 }
 
-// Initialize Realm with the City schema
-const cityRealm = new Realm({ schema: [CitySchema], schemaVersion: 3 });
-
-export { CitySchema, cityRealm };
+export { CitySchema };

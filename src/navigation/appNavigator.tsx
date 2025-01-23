@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { Home, WeatherDetails } from '../screens';
+import { Home, WeatherDetails, CityHistory } from '../screens';
 
 type RootStackParamList = {
   Home: React.Component; 
@@ -23,7 +23,8 @@ const Navigation: React.FC = () => {
       <Stack.Navigator initialRouteName="Home" screenOptions={navOptionHandler}>
         {/* Instead of screens we should add diffrent navigators ex: auth navigator , home navigator , searh navigator but app size is too small */}
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="WeatherDetails" component={WeatherDetails} />
+        <Stack.Screen name="WeatherDetails" component={WeatherDetails as any} />
+        <Stack.Screen name={"CityHistory" as any} component={CityHistory as any} />
       </Stack.Navigator>
     </NavigationContainer>
   );

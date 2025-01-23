@@ -1,4 +1,4 @@
-import { CityHistorySchema, realmCombined } from './historicalWeatherSchema';
+import { CityHistorySchema, realm } from './historicalWeatherSchema';
 import { WeatherData } from '../../redux/Interfaces/weatherInterface';
 
 /**
@@ -9,13 +9,14 @@ import { WeatherData } from '../../redux/Interfaces/weatherInterface';
  */
 export const saveCityHistory = (cityId: number, weatherData: WeatherData) => {
     try {
-        realmCombined.write(() => {
-        const historyId = realmCombined.objects('CityHistory').length + 1; // Generate unique ID
-        realmCombined.create('CityHistory', {
+
+      const historyId = realm.objects('CityHistory').length + 1; // Generate unique ID
+        realm.write(() => {
+        realm.create('CityHistory', {
           id: historyId,
           cityId,
           weatherData: JSON.stringify(weatherData), // Save as JSON string
-          recordedAt: new Date(),
+          recordedAt: String(new Date()),
         });
       });
     } catch (error) {
@@ -31,7 +32,7 @@ export const saveCityHistory = (cityId: number, weatherData: WeatherData) => {
    */
   export const fetchCityHistory = (cityId: number) => {
     try {
-      return realmCombined.objects('CityHistory').filtered(`cityId == ${cityId}`);
+      return realm.objects('CityHistory').filtered(`cityId == ${cityId}`)
     } catch (error) {
       console.error('Error fetching city history:', error);
       return [];

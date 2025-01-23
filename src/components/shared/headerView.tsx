@@ -20,7 +20,7 @@ const HeaderView = ({children, withBackIcon, title, onPressBackIcon}: HeaderProp
   return (
     <View style={styles.container}>
         <View style={styles.header}>
-                {withBackIcon ? <Pressable onPress={onPressBackIcon}><Image source={Icons.backArrow.src} style={styles.backIcon}/></Pressable>:<></>}
+                {withBackIcon ? <Pressable onPress={onPressBackIcon}><Image source={Icons.backArrow.src} style={styles.backIcon}/></Pressable>:<View></View>}
             <View style={styles.titleView}>
                 <TextComponent 
                     style={styles.title}

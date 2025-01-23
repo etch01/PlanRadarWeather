@@ -1,18 +1,14 @@
-import { WeatherData } from "../../redux/Interfaces/weatherInterface";
 import { CityType } from "../HomeScreen/types";
 import { ParamListBase, NavigationProp   } from "@react-navigation/native";
 
-export interface WeatherDetailsProps{
+export interface CityHistoryProps{
     route: Route;
     navigation : NavigationProp<ParamListBase>;
 }
 
 type Route = {
     params:{
-        city: CityType;
-        isHistory: boolean; 
-        weather?: WeatherData;
-        createdAt?: string;
+        city: CityType
     },
     weatherImage:{
         width:100,

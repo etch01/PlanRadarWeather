@@ -1,4 +1,5 @@
-import { cityRealm, CitySchema } from './citySchema';
+import { CitySchema } from './citySchema';
+import { realm } from './historicalWeatherSchema';
 
 import { CityType } from '../../screens/HomeScreen/types';
 
@@ -7,11 +8,11 @@ class RealmService {
     static addDefaultCity(): void {
         const defaultCity = { id: 1, name: 'Cairo', country: 'Egypt' };
     
-        const existingCities = cityRealm.objects<CitySchema>('City');
+        const existingCities = realm.objects<CitySchema>('City');
         if (existingCities.length === 0) {
           try {
-            cityRealm.write(() => {
-              cityRealm.create('City', defaultCity);
+            realm.write(() => {
+              realm.create('City', defaultCity);
             });
             console.log('Default city added:', defaultCity);
           } catch (error) {
@@ -24,14 +25,18 @@ class RealmService {
     
     // Get all cities
     static getAllCities(): CitySchema[] {
-      return cityRealm.objects<CitySchema>('City') as unknown as CitySchema[];
+      return realm.objects<CitySchema>('City') as unknown as CitySchema[];
     }
   
-    // Add a city
+  /**
+   * Add a city.
+   * 
+   * @param city - The city data.
+   */
     static addCity(city: CityType): void {
       try {
-        cityRealm.write(() => {
-          cityRealm.create('City', city);
+        realm.write(() => {
+          realm.create('City', city);
         });
       } catch (error) {
         console.error('Failed to add city:', error);

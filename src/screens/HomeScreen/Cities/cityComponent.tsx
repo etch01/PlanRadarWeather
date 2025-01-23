@@ -19,6 +19,13 @@ import { CityType } from '../types';
 
     const onPressCity = () =>{
         navigation.navigate('WeatherDetails',{
+            city,
+            isHistory: false
+        })
+    }
+
+    const onPressHistory = () =>{
+        navigation.navigate('CityHistory',{
             city
         })
     }
@@ -29,9 +36,9 @@ import { CityType } from '../types';
             <Image style={styles.iconImage} source={Icons.location.src}/>
             <TextComponent style={styles.cityName}>{name}</TextComponent>
         </View>
-        <View style={styles.icon}>
+        <Pressable style={styles.icon} onPress={()=>onPressHistory()}>
             <Image style={styles.iconImage} source={Icons.info.src}/>
-        </View>
+        </Pressable>
       </Pressable>
     );
 }

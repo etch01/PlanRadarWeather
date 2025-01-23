@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    body:{flex:1,justifyContent:'space-between'},
     detailsCard:{
         width: wp(80),
         backgroundColor: Colors.light,
@@ -57,5 +58,14 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    footer:{
+        zIndex: 10,
+        marginBottom: 20
+    },
+    footerText:{
+        textAlign: 'center',
+        fontSize: 12,
+        color: Colors.grayText
     }
 });

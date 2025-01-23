@@ -4,5 +4,6 @@ export const Colors = {
     bg:"#D6D3DE",
     light: "#FFFFFF",
     modalBackground: 'rgba(0, 0, 0, 0.5)',
-    grayBorder: '#E9E9E9'
+    grayBorder: '#E9E9E9',
+    grayText: '#3D4548',
 }

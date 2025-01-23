@@ -1,29 +1,25 @@
 import Realm from 'realm';
 import { CitySchema } from './citySchema';
-import { WeatherData } from '../../redux/Interfaces/weatherInterface';
 
 class CityHistorySchema extends Realm.Object {
   id!: number;
   cityId!: number; // Reference to the City table
-  weatherData!: WeatherData;
-  recordedAt!: Date;
+  weatherData!: string; // Stored as JSON string
+  recordedAt!: string; // Stored as string
 
   static schema = {
     name: 'CityHistory',
     properties: {
       id: 'int',
       cityId: 'int',
-      weatherData: 'string',
-      recordedAt: 'date',
+      weatherData: 'string', // Ensure valid JSON string is stored
+      recordedAt: 'string',
     },
     primaryKey: 'id',
   };
 }
 
 // Initialize Realm with both City and CityHistory schemas
-const realmCombined = new Realm({
-  schema: [CitySchema, CityHistorySchema],
-  schemaVersion: 4,
-});
+const realm = new Realm({schema: [CityHistorySchema, CitySchema], schemaVersion: 3});
 
-export { CityHistorySchema, realmCombined };
+export { CityHistorySchema, realm };
