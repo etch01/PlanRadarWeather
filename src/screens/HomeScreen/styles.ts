@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 16,
         right: 16,
-        zIndex:2
+        zIndex:20
     },
     searchButton:{
         position: 'absolute',
         bottom: 16,
         left: 16,
-        zIndex:2
+        zIndex:20
     }
 });

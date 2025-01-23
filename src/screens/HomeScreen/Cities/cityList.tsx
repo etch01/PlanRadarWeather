@@ -40,6 +40,7 @@ import RealmCityService from '../../../services/realmDB/cityService';
           initialNumToRender={10}
           onEndReachedThreshold={0.5}
           scrollEventThrottle={400}
+          style={{zIndex:10}}
         />
     );
 }
